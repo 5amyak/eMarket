@@ -5,10 +5,7 @@ require("../includes/helpers.php");
 $user_html = "";
 
 //connecting to database
-$conn = mysqli_connect("localhost", "root", "", "e-market_project");
-if (!$conn) {
-	exit("Connection failed: " . mysqli_connect_error());
-}
+$conn = connect();
 
 // query database for user
 $query = "SELECT * FROM users WHERE user_id='" .$_GET["user_id"]. "'";

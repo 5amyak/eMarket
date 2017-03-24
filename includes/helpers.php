@@ -29,17 +29,18 @@ function render($view, $values = [])
 /**
 * Apologizes to user with message.
 */
-function apologize($message)
+function apologize($content)
 {
-	render("apology.php", ["message" => $message]);
+	$content = "<h1>Sorry!</h1> <h3>$content</h3>";
+	render("disp_html.php", ["content" => $content]);
 }
 
 /**
-* Displays item to user
+* Displays html to user
 */
-function display($items)
+function display($content)
 {
-	render("disp_item.php", ["items" => $items]);
+	render("disp_html.php", ["content" => $content]);
 }
 
 /**

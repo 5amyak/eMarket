@@ -8,7 +8,10 @@ $item_html = "";
 $conn = connect();
 
 // query database for user
-$query = "SELECT * FROM items";
+if(isset($_SESSION["id"]))
+	$query = "SELECT * FROM items WHERE user_id != ". $_SESSION["id"] ."";
+else
+	$query = "SELECT * FROM items";
 $result = mysqli_query($conn, $query);
 
 //html of items for display
