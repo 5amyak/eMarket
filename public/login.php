@@ -26,13 +26,11 @@
         }
 
         //connecting to database
-        $conn = mysqli_connect("localhost", "root", "", "e-market_project");
-        if (!$conn) {
-            exit("Connection failed: " . mysqli_connect_error());
-        }
+        $conn = connect();
+        
         $_POST["email"] = mysqli_real_escape_string($conn, $_POST["email"]);
         // query database for user
-        $query = "SELECT user_id, password, name FROM users WHERE email='".$_POST["email"]."'";
+        $query = "SELECT user_id, name, password FROM users WHERE email='".$_POST["email"]."'";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result);
 
@@ -42,17 +40,16 @@
             // compare hash of user's input against hash that's in database
             if (password_verify($_POST["pwd"], $row["password"]))
             {
-                // remember that user's now logged in by storing user's ID in session
+                // remember that user's now logged in by storing user's ID and name in session
                 $_SESSION["id"] = $row["user_id"];
                 $_SESSION["user_name"] = $row["name"];
 
                 // redirect to home page
-                render("home.php",["title" => "Home"]);
+                header("Location:index.php");
             }
         }
 
         // else apologize
         apologize("Invalid email and/or password.");
     }
-
 ?>

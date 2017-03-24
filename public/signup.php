@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 // else if user reached page via POST (as by submitting a form via POST)
 else if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
+    //trim input
     $_POST["name"] = trim($_POST["name"]);
     $_POST["clg"] = trim($_POST["clg"]);
     $_POST["city"] = strtolower(trim($_POST["city"]));
@@ -53,26 +54,22 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
     //connecting to database
-    $conn = mysqli_connect("localhost", "root", "", "e-market_project");
-    if (!$conn) {
-        exit("Connection failed: " . mysqli_connect_error());
-    }
+    $conn = connect();
+    
     // insert user into database
     $sql = "INSERT INTO users (name, college, city, contact, email, password, gender)
     VALUES ('".$_POST["name"]."', '".$_POST["clg"]."', '".$_POST["city"]."', '".$_POST["tel"]."', 
-            '".$_POST["email"]."', '".password_hash($_POST["pwd"], PASSWORD_DEFAULT)."',
-            '".$_POST["gender"]."')";
+    '".$_POST["email"]."', '".password_hash($_POST["pwd"], PASSWORD_DEFAULT)."',
+    '".$_POST["gender"]."')";
 
     if (!mysqli_query($conn, $sql)) {
         apologize("Error: E-mail already registered " . mysqli_error($conn));
     }
-    // if all ok
     else
     {
         // redirect to login page
-        render("login.php",["title" => "LogIn"]);
+        header("Location:login.php");
     }
 
 }
-
 ?>

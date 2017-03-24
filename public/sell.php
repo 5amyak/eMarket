@@ -39,7 +39,7 @@
                 apologize("File already exists.");
             }
             // Check file size
-            else if ($_FILES["item_img"]["size"] > 5000000) {
+            else if ($_FILES["item_img"]["size"] > 1000000) {
                 apologize("File is too large.");
             }
             // Check file extension
@@ -59,10 +59,8 @@
         }
 
         //connecting to database
-        $conn = mysqli_connect("localhost", "root", "", "e-market_project");
-        if (!$conn) {
-            exit("Connection failed: " . mysqli_connect_error());
-        }
+        $conn = connect();
+
         // insert item into database
         $sql = "INSERT INTO items (user_id, title, description, category, price, img_path)
         VALUES ('".$_SESSION["id"]."', '".$_POST["title"]."', '".$_POST["details"]."', '".$_POST["ctgry"]."', '".$_POST["price"]."', '".$target_file."')";
