@@ -40,7 +40,7 @@ function apologize($content)
 */
 function display($content)
 {
-	$content = "<div class=\"container\">$content<\div>";
+	$content = "<div class=\"container\">$content</div>";
 	render("disp_html.php", ["content" => $content]);
 }
 

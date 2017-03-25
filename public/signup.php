@@ -67,7 +67,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else
     {
-        // redirect to login page
+        // redirect to login page through javascript
         exit("");
     }
 

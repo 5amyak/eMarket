@@ -25,11 +25,11 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
         exit("You must provide your password.");
     }
 
-    //connecting to database
+    // connecting to database
     $conn = connect();
 
     $_POST["email"] = mysqli_real_escape_string($conn, $_POST["email"]);
-        // query database for user
+    // query database for user
     $query = "SELECT user_id, name, password FROM users WHERE email='".$_POST["email"]."'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);

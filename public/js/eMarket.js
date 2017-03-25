@@ -28,6 +28,7 @@ $(document).ready(function() {
 		}
 	}
 
+	// ajax request to display items to be sold by other users on index.php
 	$.ajax({
 		method: "POST",
 		url: "featured.php",
@@ -44,6 +45,8 @@ $(document).ready(function() {
 		var email = $("#email").val().trim();
 		var pwd = $("#pwd").val();
 		var error_free=true;
+
+		// email field
 		if (email.length === 0) {
 			$("#email").css("border", "2px solid red");
 			$("#email").attr("placeholder", "This field is required");
@@ -60,6 +63,8 @@ $(document).ready(function() {
 		else {
 			$("#email").css("border", "2px solid green");
 		}
+
+		// Passwd field
 		if (pwd.length === 0) {
 			$("#pwd").css("border", "2px solid red");
 			$("#pwd").attr("placeholder", "This field is required");
@@ -69,6 +74,8 @@ $(document).ready(function() {
 		else {
 			$("#pwd").css("border", "2px solid green");
 		}
+
+		// ajax request to server
 		if (error_free) {
 			$.ajax({
 				method: "POST",
@@ -220,6 +227,7 @@ $(document).ready(function() {
 			$("#gender_error").text("");
 		}
 
+		// ajax request to server for server side validation
 		if (error_free) {
 			$.ajax({
 				method: "POST",
