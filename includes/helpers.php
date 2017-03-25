@@ -31,7 +31,7 @@ function render($view, $values = [])
 */
 function apologize($content)
 {
-	$content = "<h1>Sorry!</h1> <h3>$content</h3>";
+	$content = "<div class=\"container\"><h1>Sorry!</h1> <h3>$content</h3> </div>";
 	render("disp_html.php", ["content" => $content]);
 }
 
@@ -40,6 +40,16 @@ function apologize($content)
 */
 function display($content)
 {
+	$content = "<div class=\"container\">$content<\div>";
+	render("disp_html.php", ["content" => $content]);
+}
+
+/**
+* Displays home to user
+*/
+function home()
+{
+	$content = "<h2 class=\"text-center\">FEATURED PRODUCTS</h2> <hr><div class=\"container\" id=\"item\">";
 	render("disp_html.php", ["content" => $content]);
 }
 

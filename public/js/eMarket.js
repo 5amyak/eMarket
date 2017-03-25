@@ -19,7 +19,7 @@ $(document).ready(function() {
 		}
 	}
 	function validatePhone(tel) {
-		var filter = /^[0-9-+]+$/;
+		var filter = /^[0-9]+$/;
 		if (filter.test(tel)) {
 			return true;
 		}
@@ -27,40 +27,6 @@ $(document).ready(function() {
 			return false;
 		}
 	}
-	// function category(ctgry) {
-	// 	$.ajax({
-	// 		method: "POST",
-	// 		url: "category.php",
-	// 		data: {category: ctgry}
-	// 	})
-	// 	.done(function( msg ) {
-	// 		$("#item").html(msg);
-	// 	})
-	// 	.fail(function( jqXHR, textStatus, errorThrown) {
-	// 		console.log( "Request failed: " + textStatus + " " + errorThrown + " " + jqXHR.status);
-	// 	});
-	// }
-	// $("#Electronic").click(function() {
-	// 	category("Electronic");
-	// });
-	// $("#Clothing").click(function() {
-	// 	category("Clothing");
-	// });
-	// $("#Stationary").click(function() {
-	// 	category("Stationary");
-	// });
-	// $("#Sports").click(function() {
-	// 	category("Sports");
-	// });
-	// $("#Furniture").click(function() {
-	// 	category("Furniture");
-	// });
-	// $("#Vehicle").click(function() {
-	// 	category("Vehicle");
-	// });
-	// $("#Miscellaneous").click(function() {
-	// 	category("Miscellaneous");
-	// });
 
 	$.ajax({
 		method: "POST",
@@ -181,7 +147,7 @@ $(document).ready(function() {
 		else if (!validatePhone(tel)) {
 			$("#tel").css("border", "2px solid red");
 			$("#tel").val("");
-			$("#tel").attr("placeholder", "Enter valid Phone No.");
+			$("#tel").attr("placeholder", "Enter only digits");
 			error_free=false;
 			event.preventDefault();
 		}

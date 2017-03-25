@@ -45,6 +45,8 @@
     </div>
   </form>
 <?php else: ?>
-  <h1>Sorry!</h1>
-  <h3>You must be logged in to sell item.</h3>
+  <div class="container">
+    <h1>Sorry!</h1>
+    <h3>You must be logged in to sell item.</h3>
+  </div>
 <?php endif ?>
