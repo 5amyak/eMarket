@@ -1,5 +1,5 @@
 <?php if (!isset($_SESSION["id"])): ?>
-<form action="signup.php" method="post" class="form-horizontal">
+<form class="form-horizontal">
   <div class="form-group">
     <label class="control-label col-sm-2" for="name">Name:</label>
     <div class="col-sm-8">
@@ -47,11 +47,12 @@
     <div class="col-sm-8">
         <label class="radio-inline"><input type="radio" name="gender" value="Male">Male</label>
         <label class="radio-inline"><input type="radio" name="gender" value="Female">Female</label>
+        <label class="radio-inline text-danger" id="gender_error"></label>
     </div>
   </div>
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-8">
-      <button type="submit" class="btn btn-primary">SignUp</button>
+      <button type="button" class="btn btn-primary" id="signup_btn">SignUp</button>
     </div>
   </div>
 </form>

@@ -22,35 +22,35 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
     // validate submission
     if (empty($_POST["name"]))
     {
-        apologize("You must provide your name.");
+        exit("You must provide your name.");
     }
     else if (empty($_POST["clg"]))
     {
-        apologize("You must provide your college.");
+        exit("You must provide your college.");
     }
     else if (empty($_POST["city"]))
     {
-        apologize("You must provide your city.");
+        exit("You must provide your city.");
     }
     else if (empty($_POST["tel"]) || !ctype_digit($_POST["tel"]))
     {
-        apologize("You must provide your correct contact info.");
+        exit("You must provide your correct contact info.");
     }
     else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
     {
-        apologize("You must provide correct email address.");
+        exit("You must provide correct email address.");
     }
     else if (!preg_match('/^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/', $_POST["pwd"]))
     {
-        apologize("You must fulfill password requirements.");
+        exit("You must fulfill password requirements.");
     }
     else if (empty($_POST["gender"]))
     {
-        apologize("You must provide your gender.");
+        exit("You must provide your gender.");
     }
     else if ($_POST["pwd"] !== $_POST["cpwd"])
     {
-        apologize("Password Mismatch");
+        exit("Password Mismatch");
     }
 
     //connecting to database
@@ -63,12 +63,12 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
     '".$_POST["gender"]."')";
 
     if (!mysqli_query($conn, $sql)) {
-        apologize("Error: E-mail already registered " . mysqli_error($conn));
+        exit("Error: E-mail already registered " . mysqli_error($conn));
     }
     else
     {
         // redirect to login page
-        header("Location:login.php");
+        exit("");
     }
 
 }

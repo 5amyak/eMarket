@@ -43,11 +43,11 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
             // remember that user's now logged in by storing user's ID and name in session
             $_SESSION["id"] = $row["user_id"];
             $_SESSION["user_name"] = $row["name"];
+            exit("");
         }
     }
 
     // else exit
-    else
-        exit("Invalid email and/or password.");
+    exit("Invalid email and/or password.");
 }
 ?>
