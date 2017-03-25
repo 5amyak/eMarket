@@ -1,5 +1,5 @@
 <?php if (!isset($_SESSION["id"])): ?>
-<form action="login.php" method="post" class="form-horizontal">
+<form class="form-horizontal">
   <div class="form-group">
     <label class="control-label col-sm-2" for="email">Email:</label>
     <div class="col-sm-8">
@@ -14,11 +14,11 @@
   </div>
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-8">
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="button" class="btn btn-primary" id="login_btn">Login</button>
     </div>
   </div>
 </form>
 <?php else: ?>
   <h1>Sorry!</h1>
-  <h3>You must be logged out.</h3>
+  <h3>You must be logged out to log in.</h3>
 <?php endif ?>
