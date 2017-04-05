@@ -43,6 +43,7 @@
                 apologize("File is too large.");
             }
             // Check file extension
+            
             else if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" &&
                 $imageFileType != "gif" ) {
                 apologize("Only JPG, JPEG, PNG & GIF files are allowed.");
