@@ -36,7 +36,7 @@
         if (is_uploaded_file($_FILES["item_img"]['tmp_name'])) {
             // Check if file already exists
             if (file_exists($target_file)) {
-                apologize("File already exists.");
+                apologize("File already exists. Try again after changing name.");
             }
             // Check file size
             else if ($_FILES["item_img"]["size"] > 1000000) {

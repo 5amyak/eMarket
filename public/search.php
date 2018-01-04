@@ -1,6 +1,6 @@
 <?php
 // configuration
-require("../includes/helpers.php"); 
+require("../includes/helpers.php");
 
 //connecting to database
 $conn = connect();

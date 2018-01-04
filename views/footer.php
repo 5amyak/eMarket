@@ -9,5 +9,9 @@
 		</div>
 	</div>
 </footer>
+<body>
+	<div id="sb_widget"></div>
+</body>
+<script id="dsq-count-scr" src="//emarket-1.disqus.com/count.js" async></script>
 </body>
 </html>

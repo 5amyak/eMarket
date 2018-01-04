@@ -68,7 +68,14 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
     else
     {
         // redirect to login page through javascript
-        exit("");
+        if ($_POST["OneSignaluserID"] != "") {
+            $response = sendNotification($_POST["OneSignaluserID"], "172.31.100.28:3128", "edcguest:edcguest");
+            // $return["allresponses"] = $response;
+            // $return = json_encode($return);
+            exit($response);
+        }
+        else
+            exit(null);
     }
 
 }

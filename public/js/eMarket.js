@@ -28,17 +28,9 @@ $(document).ready(function() {
 		}
 	}
 
-	// ajax request to display items to be sold by other users on index.php
-	$.ajax({
-		method: "POST",
-		url: "featured.php",
-	})
-	.done(function( msg ) {
-		$("#item").html(msg);
-	})
-	.fail(function( jqXHR, textStatus, errorThrown) {
-		console.log( "Request failed: " + textStatus + " " + errorThrown + " " + jqXHR.status);
-	});
+	function setChat() {
+		
+	}
 
 	// login form client side validation
 	$("#login_btn").click(function(event) {
@@ -85,8 +77,10 @@ $(document).ready(function() {
 			.done(function( msg ) {
 				if (msg)
 					alert(msg);
-				else
+				else {
+					setChat();
 					location.replace("index.php");
+				}
 			})
 			.fail(function( jqXHR, textStatus, errorThrown) {
 				console.log( "Request failed: " + textStatus + " " + errorThrown + " " + jqXHR.status);
@@ -191,6 +185,8 @@ $(document).ready(function() {
 		else if (!validatePasswd(pwd)) {
 			$("#pwd").css("border", "2px solid red");
 			$("#pwd").val("");
+			$("#cpwd").attr("placeholder", "Retype Password");
+			$("#cpwd").val("");
 			$("#pwd").attr("placeholder", "Password must have at least 1 small, 1 capital letter, 1 number and 8 character length");
 			error_free=false;
 			event.preventDefault();
@@ -229,21 +225,34 @@ $(document).ready(function() {
 
 		// ajax request to server for server side validation
 		if (error_free) {
-			$.ajax({
-				method: "POST",
-				url: "signup.php",
-				data: {name: name, clg: clg, city: city, tel: tel,email: email, pwd: pwd, cpwd: cpwd, gender: gender}
-			})
-			.done(function( msg ) {
-				if (msg)
-					alert(msg);
-				else
-					location.replace("login.php");
-			})
-			.fail(function( jqXHR, textStatus, errorThrown) {
-				console.log( "Request failed: " + textStatus + " " + errorThrown + " " + jqXHR.status);
+
+			// getting user_id to show notifications
+			OneSignal.getUserId().then(function(OneSignaluserID) {
+				console.log("OneSignal User ID:", OneSignaluserID);
+				$.ajax({
+					method: "POST",
+					url: "signup.php",
+					data: {name: name, clg: clg, city: city, tel: tel,email: email, pwd: pwd, cpwd: cpwd, gender: gender, OneSignaluserID: OneSignaluserID}
+				})
+				.done(function(msg) {
+					if (msg.indexOf("recipients") !== -1) {
+						console.log(msg);
+						location.replace("login.php");
+					}
+					else if (msg)
+						alert(msg);
+					else
+						location.replace("login.php");
+				})
+				.fail(function( jqXHR, textStatus, errorThrown) {
+					console.log( "Request failed: " + textStatus + " " + errorThrown + " " + jqXHR.status);
+				});
 			});
 		}
+	});
+
+	$("#update_profile").click(function(event) {
+		alert("Fill fields that you want to update.");
 	});
 
 });

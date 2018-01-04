@@ -2,7 +2,7 @@
 // configuration
 require("../includes/helpers.php"); 
 
-$item_html = "";
+$item_html = "<h2 class=\"text-center\">FEATURED PRODUCTS</h2> <hr><div class=\"container\" id=\"item\">";
 
 //connecting to database
 $conn = connect();
@@ -15,11 +15,11 @@ else
 $result = mysqli_query($conn, $query);
 
 //html of items for display
-$item_html = generate_item_html($result);
+$item_html += generate_item_html($result);
 
 // returning html
 if (!empty($item_html))
-	echo $item_html;
+	display($item_html);
 else
-	echo "No item found";
+	apologize("No item found");
 ?>
